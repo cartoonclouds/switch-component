@@ -47,20 +47,26 @@ It is also recommended to include the **web components polyfill** for the older 
 
 ### Color Options
 |Color|Background|Border|Example|
-| --- | --- | --- | --- |---|
+| --- | --- | --- | --- |
 |"success"|#4dbd74|#3a9d5d|![Success theme Switch element](/readme-images/switch-color-success.png?raw=true)|
-
+|"success"|#4dbd74|#3a9d5d|![Success theme Switch element](/readme-images/switch-color-success.png?raw=true)|
+|"primary"|#20a8d8|#1985ac|![Primary theme Switch element](/readme-images/switch-color-primary.png?raw=true)|
+|"secondary"|#c8ced3|#acb5bc|![Secondary theme Switch element](/readme-images/switch-color-secondary.png?raw=true)|
+|"danger"|#f86c6b|#f63c3a|![Danger theme Switch element](/readme-images/switch-color-danger.png?raw=true)|
+|"warning"|#ffc107|#d39e00|![Warning theme Switch element](/readme-images/switch-color-warning.png?raw=true)|
+|"info"|#63c2de|#39b2d5|![Info theme Switch element](/readme-images/switch-color-info.png?raw=true)|
+|"dark"|#181b1e|#181b1e|![Dark theme Switch element](/readme-images/switch-color-dark.png?raw=true)|
 
 
 ## Example
-![Minimal Switch element](/readme-images/switch-minimal.png?raw=true)
 ```html
 <!-- Minimal example -->
   <cloud-switch>
   </cloud-switch>
 ```
 
-![Example Switch element](/readme-images/switch-example.png?raw=true)
+![Minimal Switch element](/readme-images/switch-minimal.png?raw=true)
+
 ```html
 <!-- Example -->
   <cloud-switch 
@@ -72,8 +78,8 @@ It is also recommended to include the **web components polyfill** for the older 
   ></cloud-switch>
 ```
 
+![Example Switch element](/readme-images/switch-example.png?raw=true)
 
-![Verbose Switch element](/readme-images/switch-verbose.png?raw=true)
 ```html
 <!--  Verbose example -->
   <cloud-switch
@@ -86,6 +92,9 @@ It is also recommended to include the **web components polyfill** for the older 
           height="48"
   ></cloud-switch>
 ```
+
+![Verbose Switch element](/readme-images/switch-verbose.png?raw=true)
+
 
 ## TODO
 * Provide values which will be submitted whether the switch is "on" or "off".
