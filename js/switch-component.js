@@ -45,15 +45,11 @@ export class SwitchElement extends HTMLElement {
 
 		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-
 		/** @private */
 		this.shadowCheck = this.shadowRoot.querySelector('input');
 
 		/** @private */
 		this.label = this.shadowRoot.querySelector('[label]');
-
-		/** @private */
-		this.handle = this.shadowRoot.querySelector('[handle]');
 
 		/** @private */
 		this.checkbox = document.createElement('input');
@@ -88,12 +84,6 @@ export class SwitchElement extends HTMLElement {
 		if (!this.hasAttribute('off-text'))
 			this.setAttribute('off-text', 'OFF');
 
-		if (!this.hasAttribute('value'))
-			this.setAttribute('value', 1);
-
-
-		this.height = 24;
-		this.width = 48;
 
 		this.checked = this.hasAttribute('checked') || true;
 		this.disabled = this.hasAttribute('disabled') || false;
@@ -178,52 +168,13 @@ export class SwitchElement extends HTMLElement {
 
 
     /**
-     * Gets the width of the switch.
-     *
-     * @return {string} The width of the switch in px.
-     */
-    get width() { return this.getAttribute('width'); }
-
-    /**
-     * Sets the width theme of the switch (must be in px).
-     * 96 48
-     * @param {string} value - The width of the switch.
-     */
-    set width(value) {
-		this.setAttribute('width', value);
-
-		this.style.setProperty('width', `${value}px`);
-		this.handle.style.setProperty('width', `${value * 0.45}px`);
-		this.handle.style.setProperty('--handle-left', `${value - Number.parseInt(getComputedStyle(this.handle).getPropertyValue('width')) - 4}px`);
-    }
-
-
-    /**
-     * Gets the height of the switch.
-     *
-     * @return {string} The height of the switch in px.
-     */
-    get height() { return this.getAttribute('height'); }
-
-    /**
-     * Sets the height theme of the switch (must be in px).
-     *
-     * @param {string} value - The height of the switch.
-     */
-    set height(value) {
-		this.setAttribute('height', value);
-
-		this.style.setProperty('height', `${value}px`);
-		this.handle.style.setProperty('height', `${value - 4}px`);
-    }
-
-
-    /**
      * Gets the color of the switch.
      *
      * @return {string} The color of the switch.
      */
-    get color() { return this.getAttribute('color'); }
+    get color() {
+        return this.getAttribute('color');
+    }
 
     /**
      * Sets the color theme of the switch. Must be one of:
@@ -252,7 +203,9 @@ export class SwitchElement extends HTMLElement {
 	 * @see {@link get onText}
 	 * @return {string} 'on' text.
 	 */
-	get 'on-text'() { return this.label.getAttribute('on-text'); }
+	get 'on-text'() {
+		return this.label.getAttribute('on-text');
+	}
 
 	/**
 	 * A helper for the _get_ on-text() function.
@@ -297,7 +250,9 @@ export class SwitchElement extends HTMLElement {
 	 * @see {@link get offText}
 	 * @return {string} 'off' text.
 	 */
-	get 'off-text'() { return this.label.getAttribute('off-text'); }
+	get 'off-text'() {
+		return this.label.getAttribute('off-text');
+	}
 
 	/**
 	 * A helper for the _get_ off-text() function.
@@ -342,7 +297,9 @@ export class SwitchElement extends HTMLElement {
 	 *
 	 * @return {string} The name of the switch.
 	 */
-	get name() { return this.getAttribute('name'); }
+	get name() {
+		return this.getAttribute('name');
+	}
 
     /**
      * Sets the name of the switch.
@@ -360,7 +317,9 @@ export class SwitchElement extends HTMLElement {
      *
      * @return {string} The value of the switch.
      */
-    get value() { return this.getAttribute('value'); }
+    get value() {
+        return this.getAttribute('value');
+    }
 
     /**
      * Sets the value of the switch.
@@ -378,7 +337,9 @@ export class SwitchElement extends HTMLElement {
      *
      * @return {boolean} True if the switch is 'on', false otherwise.
      */
-    get checked() { return this.hasAttribute('checked'); }
+    get checked() {
+        return this.hasAttribute('checked');
+    }
 
     /**
      * Sets the on/off state of the switch.
@@ -415,7 +376,9 @@ export class SwitchElement extends HTMLElement {
      *
      * @return {boolean} True if disabled, false otherwise.
      */
-    get disabled() { return this.hasAttribute('disabled'); }
+    get disabled() {
+       return this.hasAttribute('disabled');
+    }
 
     /**
      * Sets the disabled state.
@@ -454,7 +417,9 @@ export class SwitchElement extends HTMLElement {
      *
      * @return {boolean} True if readonly, false otherwise.
      */
-    get readonly() { return this.hasAttribute('readonly'); }
+    get readonly() {
+        return this.hasAttribute('readonly');
+    }
 
     /**
      * Sets the readonly state.
@@ -471,28 +436,20 @@ export class SwitchElement extends HTMLElement {
 			if(!this.hasAttribute('readonly'))
 				this.setAttribute('readonly', '');
 
-			if(!this.shadowCheck.hasAttribute('readonly')) {
+			if(!this.shadowCheck.hasAttribute('readonly'))
 				this.shadowCheck.setAttribute('readonly', '');
-				this.shadowCheck.readonly = true;
-			}
 
-			if(!this.checkbox.hasAttribute('readonly')) {
+			if(!this.checkbox.hasAttribute('readonly'))
 				this.checkbox.setAttribute('readonly', '');
-				this.checkbox.readonly = true;
-			}
 		} else {
 			if(this.hasAttribute('readonly'))
 				this.removeAttribute('readonly');
 
-			if(this.shadowCheck.hasAttribute('readonly')) {
+			if(this.shadowCheck.hasAttribute('readonly'))
 				this.shadowCheck.removeAttribute('readonly');
-				this.shadowCheck.readonly = false;
-			}
 
-			if(this.checkbox.hasAttribute('readonly')) {
+			if(this.checkbox.hasAttribute('readonly'))
 				this.checkbox.removeAttribute('readonly');
-				this.checkbox.readonly = false;
-			}
 		}
     }
 
@@ -510,8 +467,6 @@ export class SwitchElement extends HTMLElement {
             'readonly',
             'checked',
             'value',
-            'width',
-            'height',
             'name',
             'color',
 			'on-text',
@@ -554,14 +509,13 @@ export class SwitchElement extends HTMLElement {
 
     }
 
-
 }
 
 
 const template = document.createElement('template');
 
 
-template.innerHTML = `
+template.innerHTML = /* css */`
 	<style>
 		:host([hidden]) { display: none }
 
@@ -584,16 +538,18 @@ template.innerHTML = `
 		:host {
 			position: relative;
 			display: inline-block;
+			width: 48px;
+			height: 24px;
 			background-color: transparent;
 			font-family: "Quattrocento Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 			cursor: pointer;
 			-ms-touch-action: manipulation;
-			touch-action: manipulation;
+			touch-action: manipulation
 		}
 
 
 		[type="checkbox"] {
-			display: none;
+			display: inline-block;
 			position: absolute;
 			opacity: 0;
 			width: 0;
@@ -610,7 +566,7 @@ template.innerHTML = `
 		}
 
 		:host([color="success"]) [type="checkbox"]:checked ~ [handle] {
-			left: var(--handle-left);
+			left: 26px;
 			border-color: #3a9d5d;
 		}
 		
@@ -626,7 +582,7 @@ template.innerHTML = `
 
 
 		:host([color="primary"]) [type="checkbox"]:checked ~ [handle] {
-			left: var(--handle-left);
+			left: 26px;
 			border-color: #1985ac;
 		}
 		
@@ -641,7 +597,7 @@ template.innerHTML = `
 		}
 
 		:host([color="secondary"]) [type="checkbox"]:checked ~ [handle] {
-			left: var(--handle-left);
+			left: 26px;
 			border-color: #acb5bc;
 		}
 
@@ -656,7 +612,7 @@ template.innerHTML = `
 		}
 
 		:host([color="danger"]) [type="checkbox"]:checked ~ [handle] {
-			left: var(--handle-left);
+			left: 26px;
 			border-color: #f63c3a;
 		}
 
@@ -671,7 +627,7 @@ template.innerHTML = `
 		}
 
 		:host([color="warning"]) [type="checkbox"]:checked ~ [handle] {
-			left: var(--handle-left);
+			left: 26px;
 			border-color: #d39e00;
 		}
 
@@ -686,7 +642,7 @@ template.innerHTML = `
 		}
 
 		:host([color="info"]) [type="checkbox"]:checked ~ [handle] {
-			left: var(--handle-left);
+			left: 26px;
 			border-color: #39b2d5;
 		}
 
@@ -701,7 +657,7 @@ template.innerHTML = `
 		}
 
 		:host([color="dark"]) [type="checkbox"]:checked ~ [handle] {
-			left: var(--handle-left);
+			left: 26px;
 			border-color: #181b1e;
 		}
 
@@ -710,6 +666,8 @@ template.innerHTML = `
 			position: absolute;
 			top: 2px;
 			left: 2px;
+			width: 20px;
+			height: 20px;
 			background: #fff;
 			border: 1px solid #e4e6eb;
 			border-radius: 1px;
@@ -737,7 +695,7 @@ template.innerHTML = `
 		[label]::after, [label]::before {
 			position: absolute;
 			top: 50%;
-			width: 45%;
+			width: 50%;
 			margin-top: -.5em;
 			line-height: 1;
 			text-align: center;
@@ -748,7 +706,7 @@ template.innerHTML = `
 
 
 		[label]::before {
-			right: 0;
+			right: 1px;
 			color: #e4e6eb;
 			content: attr(off-text);
 		}
@@ -760,7 +718,7 @@ template.innerHTML = `
 
 
 		[label]::after {
-			left: 0;
+			left: 1px;
 			color: #fff;
 			content: attr(on-text);
 			opacity: 0;
