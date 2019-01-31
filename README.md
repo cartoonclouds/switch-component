@@ -49,7 +49,6 @@ It is also recommended to include the **web components polyfill** for the older 
 |Color|Background|Border|Example|
 | --- | --- | --- | --- |
 |"success"|#4dbd74|#3a9d5d|![Success theme Switch element](/readme-images/switch-color-success.png?raw=true)|
-|"success"|#4dbd74|#3a9d5d|![Success theme Switch element](/readme-images/switch-color-success.png?raw=true)|
 |"primary"|#20a8d8|#1985ac|![Primary theme Switch element](/readme-images/switch-color-primary.png?raw=true)|
 |"secondary"|#c8ced3|#acb5bc|![Secondary theme Switch element](/readme-images/switch-color-secondary.png?raw=true)|
 |"danger"|#f86c6b|#f63c3a|![Danger theme Switch element](/readme-images/switch-color-danger.png?raw=true)|
