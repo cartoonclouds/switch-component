@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Cartoon Cloud Switch Example</title>
+  <style>
+
+  </style>
+</head>
+<body>
+
+<form id="form">
+  <cloud-switch
+          name="cloudSwitch"
+          value="1"
+          color="info"
+          id="customerChkbox"
+          role="checkbox"
+          tabindex="0"
+          width="96"
+          height="48"
+  ></cloud-switch>
+
+  <cloud-switch>
+  </cloud-switch>
+
+  <input type="checkbox">
+  <input type="checkbox" value="1" name="chkBox" checked>
+</form>
+<!-- The web component polyfill -->
+<script src="https://cdn.rawgit.com/webcomponents/webcomponentsjs/edf84e6e/webcomponents-sd-ce.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script async charset="utf-8" defer src="js/switch-component.js" type="module"></script>
+
+</body>
+</html>
