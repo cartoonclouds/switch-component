@@ -52,6 +52,9 @@ export class SwitchElement extends HTMLElement {
 		this.label = this.shadowRoot.querySelector('[label]');
 
 		/** @private */
+		this.handle = this.shadowRoot.querySelector('[handle]');
+
+		/** @private */
 		this.checkbox = document.createElement('input');
 
 		this.checkbox.setAttribute('type', 'checkbox');
@@ -83,6 +86,13 @@ export class SwitchElement extends HTMLElement {
 
 		if (!this.hasAttribute('off-text'))
 			this.setAttribute('off-text', 'OFF');
+		
+		if (!this.hasAttribute('value'))
+			this.setAttribute('value', 1);
+
+
+		this.height = 24;
+		this.width = 48;
 
 
 		this.checked = this.hasAttribute('checked') || true;
@@ -167,7 +177,48 @@ export class SwitchElement extends HTMLElement {
 	}
 
 
-    /**
+	/**
+	 * Gets the width of the switch.
+	 *
+	 * @return {string} The width of the switch in px.
+	 */
+	get width() { return this.getAttribute('width'); }
+
+	/**
+	 * Sets the width theme of the switch (must be in px).
+	 * 96 48
+	 * @param {string} value - The width of the switch.
+	 */
+	set width(value) {
+		this.setAttribute('width', value);
+
+		this.style.setProperty('width', `${value}px`);
+		this.handle.style.setProperty('width', `${value * 0.45}px`);
+		this.handle.style.setProperty('--handle-left', `${value - Number.parseInt(getComputedStyle(this.handle).getPropertyValue('width')) - 4}px`);
+	}
+
+
+	/**
+	 * Gets the height of the switch.
+	 *
+	 * @return {string} The height of the switch in px.
+	 */
+	get height() { return this.getAttribute('height'); }
+
+	/**
+	 * Sets the height theme of the switch (must be in px).
+	 *
+	 * @param {string} value - The height of the switch.
+	 */
+	set height(value) {
+		this.setAttribute('height', value);
+
+		this.style.setProperty('height', `${value}px`);
+		this.handle.style.setProperty('height', `${value - 4}px`);
+	}
+
+	
+	/**
      * Gets the color of the switch.
      *
      * @return {string} The color of the switch.
@@ -429,29 +480,37 @@ export class SwitchElement extends HTMLElement {
      *
      * @param {boolean|int} value - A (boolean-castable) value which sets whether the switch is readonly.
      */
-    set readonly(value) {
+	set readonly(value) {
 		const isReadonly = Boolean(value);
 
 		if(isReadonly) {
 			if(!this.hasAttribute('readonly'))
 				this.setAttribute('readonly', '');
 
-			if(!this.shadowCheck.hasAttribute('readonly'))
+			if(!this.shadowCheck.hasAttribute('readonly')) {
 				this.shadowCheck.setAttribute('readonly', '');
+				this.shadowCheck.readonly = true;
+			}
 
-			if(!this.checkbox.hasAttribute('readonly'))
+			if(!this.checkbox.hasAttribute('readonly')) {
 				this.checkbox.setAttribute('readonly', '');
+				this.checkbox.readonly = true;
+			}
 		} else {
 			if(this.hasAttribute('readonly'))
 				this.removeAttribute('readonly');
 
-			if(this.shadowCheck.hasAttribute('readonly'))
+			if(this.shadowCheck.hasAttribute('readonly')) {
 				this.shadowCheck.removeAttribute('readonly');
+				this.shadowCheck.readonly = false;
+			}
 
-			if(this.checkbox.hasAttribute('readonly'))
+			if(this.checkbox.hasAttribute('readonly')) {
 				this.checkbox.removeAttribute('readonly');
+				this.checkbox.readonly = false;
+			}
 		}
-    }
+	}
 
 
 	/**
@@ -463,12 +522,14 @@ export class SwitchElement extends HTMLElement {
      */
     static get observedAttributes() {
         return [
-            'disabled',
-            'readonly',
-            'checked',
-            'value',
-            'name',
-            'color',
+			'disabled',
+			'readonly',
+			'checked',
+			'value',
+			'width',
+			'height',
+			'name',
+			'color',
 			'on-text',
 			'off-text',
         ];
@@ -480,22 +541,22 @@ export class SwitchElement extends HTMLElement {
 	 * 
 	 * @private
 	 * @callback attributeChangedCallback
-     */
-    attributeChangedCallback(attr, oldValue, newValue) {
+	 */
+	attributeChangedCallback(attr, oldValue, newValue) {
 
 		switch (attr) {
-            case 'checked':
-            case 'disabled':
-            case 'readonly':
+			case 'checked':
+			case 'disabled':
+			case 'readonly':
 				const hasAttr = newValue !== null;
 
 				this[attr] = hasAttr;
 
-                if (hasAttr) {
-                    this.classList.add(attr);
-                } else {
-                    this.classList.remove(attr);
-                }
+				if (hasAttr) {
+					this.classList.add(attr);
+				} else {
+					this.classList.remove(attr);
+				}
 
 				break;
 
@@ -505,9 +566,9 @@ export class SwitchElement extends HTMLElement {
 					this[attr] = newValue;
 				}
 
-        }
+		}
 
-    }
+	}
 
 }
 
@@ -538,8 +599,6 @@ template.innerHTML = /* css */`
 		:host {
 			position: relative;
 			display: inline-block;
-			width: 48px;
-			height: 24px;
 			background-color: transparent;
 			font-family: "Quattrocento Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 			cursor: pointer;
@@ -566,7 +625,7 @@ template.innerHTML = /* css */`
 		}
 
 		:host([color="success"]) [type="checkbox"]:checked ~ [handle] {
-			left: 26px;
+			left: var(--handle-left);
 			border-color: #3a9d5d;
 		}
 		
@@ -582,7 +641,7 @@ template.innerHTML = /* css */`
 
 
 		:host([color="primary"]) [type="checkbox"]:checked ~ [handle] {
-			left: 26px;
+			left: var(--handle-left);
 			border-color: #1985ac;
 		}
 		
@@ -597,7 +656,7 @@ template.innerHTML = /* css */`
 		}
 
 		:host([color="secondary"]) [type="checkbox"]:checked ~ [handle] {
-			left: 26px;
+			left: var(--handle-left);
 			border-color: #acb5bc;
 		}
 
@@ -612,7 +671,7 @@ template.innerHTML = /* css */`
 		}
 
 		:host([color="danger"]) [type="checkbox"]:checked ~ [handle] {
-			left: 26px;
+			left: var(--handle-left);
 			border-color: #f63c3a;
 		}
 
@@ -627,7 +686,7 @@ template.innerHTML = /* css */`
 		}
 
 		:host([color="warning"]) [type="checkbox"]:checked ~ [handle] {
-			left: 26px;
+			left: var(--handle-left);
 			border-color: #d39e00;
 		}
 
@@ -642,7 +701,7 @@ template.innerHTML = /* css */`
 		}
 
 		:host([color="info"]) [type="checkbox"]:checked ~ [handle] {
-			left: 26px;
+			left: var(--handle-left);
 			border-color: #39b2d5;
 		}
 
@@ -657,7 +716,7 @@ template.innerHTML = /* css */`
 		}
 
 		:host([color="dark"]) [type="checkbox"]:checked ~ [handle] {
-			left: 26px;
+			left: var(--handle-left);
 			border-color: #181b1e;
 		}
 
