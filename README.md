@@ -1,4 +1,4 @@
-# switch-component
+# Switch Web Component
 A switch form Web Component utilising the latest ES6 and other web technologies to create [reusable custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components). While not explicitly extending the HTML checkbox element ([<input type="checkbox">](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox)) the underlying state management uses a standard checkbox in order to keep track of the "checked"\"unchecked" state and allow for a value to be sent via submissions<sup>[[1](#footnotes)]</sup>.
 
 The component is reactive in size - the handle will grow/shrink with respect to the set width/height (which can be configured either via the width/height attributes or using CSS styling).   
