@@ -46,15 +46,10 @@ It is also recommended to include the **web components polyfill** for the older 
 |color|color|"info"|["success", "primary", "secondary", "danger", "warning", "info", "dark"]|:x:|Changes the color of the switch. The names and values are taken from [Bootstrap 4.0](https://getbootstrap.com/). See below for a list of possible colors and their hex values.|
 
 ### Color Options
-|Color|Background|Border|
-| --- | --- | --- | --- |
+|Color|Background|Border|Example|
+| --- | --- | --- | --- |---|
 |"success"|#4dbd74|#3a9d5d|![Success theme Switch element](/readme-images/switch-color-success.png?raw=true)|
-|"primary"|#20a8d8|#1985ac|![Primary theme Switch element](/readme-images/switch-color-primary.png?raw=true)|
-|"secondary"|#c8ced3|#acb5bc|![Secondary theme Switch element](/readme-images/switch-color-secondary.png?raw=true)|
-|"danger"|#f86c6b|#f63c3a|![Danger theme Switch element](/readme-images/switch-color-danger.png?raw=true)|
-|"warning"|#ffc107|#d39e00|![Warning theme Switch element](/readme-images/switch-color-warning.png?raw=true)|
-|"info"|#63c2de|#39b2d5|![Info theme Switch element](/readme-images/switch-color-info.png?raw=true)|
-|"dark"|#181b1e|#181b1e|![Dark theme Switch element](/readme-images/switch-color-dark.png?raw=true)|
+
 
 
 ## Example
