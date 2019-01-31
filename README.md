@@ -1,11 +1,11 @@
 # switch-component
-A switch form Web Component utilising the latest ES6 and other web technologies to create [reusable custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components). While not explicitly extending the HTML checkbox element ([<input type="checkbox">](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox)) the underlying state management uses a standard checkbox in order to keep track of the "checked"\"unchecked" state and allow for a value to be sent via submissions<sup>[[1](#1)]</sup>.
+A switch form Web Component utilising the latest ES6 and other web technologies to create [reusable custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components). While not explicitly extending the HTML checkbox element ([<input type="checkbox">](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox)) the underlying state management uses a standard checkbox in order to keep track of the "checked"\"unchecked" state and allow for a value to be sent via submissions<sup>[[1](#footnotes)]</sup>.
 
 The component is reactive in size - the handle will grow/shrink with respect to the set width/height (which can be configured either via the width/height attributes or using CSS styling).   
 
 Listeners are attached to work as other standard HTML elements of similar functionality. The click, spacebar and enter keyboard events (once having focus) will all change the state of the switch. 
 
-Additionally all custom attributes have the same properties and are kept in sync for javascript manipulation.
+Additionally all custom attributes also have the same named properties and are kept in sync for any Javascript manipulation.
 
 ## Installation
 1. Add the `switch-component.js` file to your `/js` folder.
@@ -38,12 +38,12 @@ It is also recommended to include the **web components polyfill** for the older 
 |disabled|disabled|`false`|`boolean`|:x:|Prevents the element from obtaining focus or sending it's value.|
 |readonly|readonly|`false`|`boolean`|:x:|The element can still obtain focus, and value submitted but unable to have it's value changed.|
 |checked|checked|`true`|`boolean`|:x:|Sets by default as the switch in "on" mode.|
-|width|width|-|`integer`\\`double`|:x:|Sets the width of the switch.|
-|height|width|-|`integer`\\`double`|:x:|Sets the height of the switch.|
+|width|width|-|[`integer`, `double`]|:x:|Sets the width of the switch.|
+|height|width|-|[`integer`, `double`]|:x:|Sets the height of the switch.|
 |on-text|onText|"ON"|`string`|:x:|Sets the text which is displayed when the switch is in it's "on" mode.|
 |off-text|offText|"OFF"|`string`|:x:|Sets the text which is displayed when the switch is in it's "off" mode.|
 |role|role|"checkbox"|`string`|:x:|The correct value for WAI-ARIA accecssable-compliant components.|
-|color|color|"info"|['success', 'primary', 'secondary', 'danger', 'warning', 'info', 'dark']|:x:|Changes the color of the switch. The names and values are taken from [Bootstrap 4.0](https://getbootstrap.com/). See below for a list of possible colors and their hex values.|
+|color|color|"info"|["success", "primary", "secondary", "danger", "warning", "info", "dark"]|:x:|Changes the color of the switch. The names and values are taken from [Bootstrap 4.0](https://getbootstrap.com/). See below for a list of possible colors and their hex values.|
 
 ### Color Options
 |Color|Background|Border|
@@ -63,6 +63,18 @@ It is also recommended to include the **web components polyfill** for the older 
   <cloud-switch>
   </cloud-switch>
 ```
+
+```html
+<!-- Example -->
+  <cloud-switch 
+          name="Send Value?"
+          on-text="Hell Yea" 
+          off-text="No, no!" 
+          color="primary"
+          value="Yes"
+  ></cloud-switch>
+```
+
 ```html
 <!--  Verbose example -->
   <cloud-switch
@@ -71,7 +83,6 @@ It is also recommended to include the **web components polyfill** for the older 
           color="info"
           id="customerChkbox"
           role="checkbox"
-          tabindex="0"
           width="96"
           height="48"
   ></cloud-switch>
@@ -83,4 +94,4 @@ It is also recommended to include the **web components polyfill** for the older 
 
 
 ## Footnotes
-[1] The current state of web components prevent custom form inputs from being able to be submitted. Offical discussion [thread here](https://github.com/w3c/webcomponents/issues/509)<sub>[**closed**]</sub>
+[1] The current state of web components prevent custom form inputs from being able to be submitted. Offical [thread here](https://github.com/w3c/webcomponents/issues/509)<sub>[**closed**]</sub>
